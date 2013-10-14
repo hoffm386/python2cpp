@@ -1,0 +1,843 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C++ for Python Programmers</title>
+<meta name="keywords" content="" />
+<meta name="Premium Series" content="" />
+<link href="CppStyleSheet1.css" rel="stylesheet" type="text/css" media="screen" />
+
+</head>
+<body>
+<!-- start header -->
+<div id="header">
+
+	<div id="logo">
+		<table border-bottom="1px solid #000000" >
+			<tr>
+				<td>
+					<h1>C++ for Python Programmers</h1>
+					<p font-weight="bold">Enbody & Punch<br/>Michigan State University</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<!-- end header -->
+<div id="wrapper">
+	<!-- start page -->
+	<div id="page">
+
+
+<H3>Purpose of this document</H3>
+    <p>
+        This document is a brief introduction to C++ for Python programmers -- something to help start a 
+        transition to C++.  It is not meant to be a complete introduction to C++. 
+        Brevity took precedence over details.</p>
+    
+    <H3>Help us with this document...</H3>
+    <p>
+        We'd like to make this document a useful reference for a wide audience.  Please send suggestions
+        or additions to enbody@cse.msu.edu.  We welcome coauthors of significant expansions.</p>
+    <p>
+        This document is a supplement to our Python text which is currently in its second edition.</p>
+    
+    <a name="quicklinks"></a>
+    <H3>Quick Links</H3>
+    <table border="1">
+        <tr>
+            <td><a href="#whycpp">Why C++?</a></td>
+            <td><a href="#helloworld">Hello World!</a></td>
+            <td><a href="#runningtheprogram">Running the program</a></td>
+            <td><a href="#cppstronglytyped">C++ Types</a></td>
+        </tr>
+        <tr>
+            <td><a href="#assignment">Assignment</a></td>
+            <td><a href="#variablesaredifferent">Variables</a></td>
+            <td><a href="#arithmetic">Arithmetic</a></td>
+            <td><a href="#relations">Relations</a></td>
+        </tr>
+        <tr>
+            <td><a href="#conditionalif">Conditional: if </a></td>
+            <td><a href="#pythonsuites">Suites == Blocks</a></td>
+            <td><a href="#comments">Comments</a></td>
+            <td><a href="#whileloop">while Loop</a></td>
+        </tr>
+        <tr>
+            <td><a href="#forloop">for Loop</a></td>
+            <td><a href="#output">Output</a></td>
+            <td><a href="#fileinputoutput">File Input and Output</a></td>
+            <td><a href="#functions">Functions</a></td>
+        </tr>
+        <tr>
+
+            <td><a href="#classes">Classes</a></td>
+            <td><a href="#pointers">Pointers</a></td>
+            <td><a href="#exceptions">Exceptions</a></td>
+        </tr>
+    </table>
+    <br />
+    <a name="whycpp"></a>
+    <H3>Why C++?</H3>
+    <p>
+        Why should Python programmers care about C++?<br>
+        C++ and its ancestor language C allow one to operate closer to the operating system and
+        hardware.  That closeness can result in better performance, but it is not guaranteed.
+        Also, C++ is a common and powerful language so it is worth learning. 
+        Look "under the hood" of many applications and operating systems, and you find C++ or C.</p>
+    <p>
+        One thing to keep in mind when learning C++ is to keep an eye out for the STL: the C++
+        Standard Template Library.  The STL is frequently overlooked in textbooks, but it is
+        a powerful set of tools and will be your friend.</p>
+    <p>
+        There are other languages worth learning, but this page is devoted solely to the 
+        transition from Python to C++. Note that C++ preceded Java and C# so one finds many
+        similarities (as well as significant differences).  Once one learns C++ it is
+        relatively easy to transition to the other two.</p>
+    <p>
+        Finally, language choice need not be an "either/or" situation.
+        You can code in Python and then incorporate C++ where you need speed or low-level access 
+        to system components.  It is relatively easy to wrap C++ libraries for calling from Python 
+        (many useful ones are already wrapped for you).  Python plays well with other languages.
+        Tools such as Bgen, PySTL, and Sip help.</p>
+    <p>
+        Here at Michigan State University our first course for Computer Science and Computer
+        Engineering majors is in Python, and the second course uses C++ in a Linux environment.</p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="helloworld"></a>
+    <H3>Hello World!</H3>
+    <p>
+        The tradition in C programming is to write one's first program to simply print "Hello World!"
+        That is how the first C programming book <u>The C Programming Language</u> by Kernighan and Ritchie began.
+        Since C++ is derived from C, we'll start the traditional way.</p>
+    <pre>
+        #include &lt;iostream&gt;
+        using namespace std;
+        int main()
+        {
+            cout << "Hello World!";
+        }
+    </pre>
+    <p>
+        The first thing a Python programmer notices is significant overhead to simply print a string.  The #include
+        works like <code>import</code> in Python (not really, but the analogy works for now) so in this case
+        the input/output stream library is brought in. In this case, that is where <code>cout</code> is defined. 
+        The <code>using namespace</code> specifies the namespace so we can use <code>cout</code> instead of
+        <code>std::cout</code>.</p>
+    <p>
+        The <code>int main()</code> begins the declaration of the <code>main</code> function which in C++ indicates
+        the first function to executed, i.e. "begin here."  The curly braces <code>{</code> and <code>}</code> 
+        delimit the beginning and end of a block of code, in this case the beginning and end of the function
+        <code>main</code>.</p>
+    <p>
+        The statement <code>cout << "Hello World!";</code> directs the string to <code>cout</code>, the standard
+        output stream, which displays it.  Indentation is optional in C++, but code will be unreadable if you
+        do not indent.  If you indent like you were forced to do in Python, your code will be readable.  </p>
+    <p>
+        <b>Gotcha #1:</b> Statements in C++ end with a semicolon <code>";"</code> (that isn't precisely correct, but
+        will do for now).</p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+    
+    <a name="runningtheprogram"></a>
+    <H3>Running the program.</H3>
+    <p>
+        C++ is a compiled language so you must compile it before executing it.  Compilation takes the C++ code
+        and translates it into machine language that a processor understands.  Compiling and executing code
+        is system dependent.  For simplicity, I will describe how to do it in Linux.</p>
+    <p>
+        The program must be written using some editor such as VI or EMACS on Linux.  A C++ program file
+        extension is <code>.cpp</code> so save the program as <code>hello.cpp</code>. </p>
+    <p>
+        The GNU compiler, g++, is widely available so compiling is simply the line:<br/>
+        <code>g++ hello.cpp</code></p>
+    <p>
+        If compilation is successful, the executable code will by default be written to a file named
+        <code>a.out</code> which can be executed by simply typing <code>a.out</code> at the 
+        command prompt.  If the compiler finds syntactical errors in the program, error messages
+        will be printed.</p>
+    <p>
+        To download the recommended SSH client (free or licensed through the CSE department) for connecting 
+        remotely to the Linux server, click <a href="http://www.cse.msu.edu/facility/software/">here.</a>
+    </p>
+    <p>
+        If none of this makes sense, don't worry.  Your first laboratory exercise in CSE 232 will be a Linux tutorial.
+    </p>
+    <p>
+        On a Windows computer, the Visual C++ development envrionment is an excellent, but sophiscated, 
+        way to create and run programs (named Visual Studio).  You compile and edit within the same application.  Compilation
+        is done by "building" the program.  Running is simply a command in the application. </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="cppstronglytyped"></a>
+    <H3>C++ is strongly typed</H3>
+    <p>
+        C++ is a strongly typed language -- not precisely stongly typed, but close enough for now.
+        That is, all objects (things you name) must be declared before use.  Python figures out types based
+        on the objects you assign names to, but C++ wants to know up front.  Python allows names to refer to different types
+        of objects while the program is running; in C++ the type remains fixed. </p>
+    <p>
+        For example, the type of a variable must be stated before use.
+    </p>
+    <pre>
+        int x;
+        x = 2;
+    </pre>
+    <p>
+        <b>Gotcha #2:</b> Forgetting to declare a variable before use.<br/>
+        (Don't worry, the compiler will yell at you if you forget.)<br/>
+        Note how each statement ends with a semicolon (Gotcha #1).
+
+    </p>
+    <H3>C++ types</H3>
+    <p>
+        Some C++ types are familiar:
+    </p>
+        <ul>
+            <li>int</li>
+            <li>float</li>
+            <li> bool: Boolean</li>
+            <li>string: requires #include&lt;string&gt;  </li>
+        </ul>
+    <p>
+        Some are unfamiliar:
+    </p>
+        <ul>
+            <li>char: single character, but a string of length one is not equivalent.</li>
+        </ul>
+    <p>
+        Some differences:
+    </p>
+        <ul>
+            <li><code>int</code> doesn't have extended precision.  An <code>int</code> is limited by machine word size (usually 32 bits, but 64-bit use is growing); roughly, a max of 2 billion.</li>
+            <li>There are many variations of <code>int</code>: short, long, unsigned, unsigned long, etc., but you can go far with only <code>int</code>.</li>
+            <li> Instead of using <code>float</code>, <code>double</code> is often used. 
+               It is still a floating point number but has greater precision in calculations. </li>
+        </ul>   
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="assignment"></a>
+    <H3>Assignment</H3>
+    <p>
+        Assignment is familiar:
+    </p>
+    <pre>
+        x = 4;
+    </pre>
+    <p>
+        but, multi-assignment is <b>not</b> allowed:
+    </p>   
+    <pre>
+        x,y = y,x 
+    </pre>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="variablesaredifferent"></a>
+    <H3>Variables are different.</H3>
+    <p>
+        In C++, variables are memory locations with names.
+        Declaring a variable puts a name to that memory location and associates a type with that memory location.</p>
+    <pre>
+        int x, y;
+        x = 7;
+        y = x;
+    </pre>
+    <p>
+        In Python the expression <code>y = x</code> gives two names (x and y) to the same object, but in C++ that
+        same expression copies the value of x into the location named by y.</p>
+    <p>
+        This difference can be illustrated as follows.  In this example, we can see how two names for the same
+        object allow changing the value using one name to be observed when displaying the other.</p>
+    <p>
+        In Python we can name a list A and then also name it B.  The 'is' operator shows that A and B name the 
+        same object.  When you modify B by changing the first element in the list, that change is reflected when
+        you display A:
+    </p>
+    <pre>
+        >>> A = [2,3]
+        >>> B = A
+        >>> B is A
+        True
+        >>> B[0]=100
+        >>> A
+        [100, 3]
+    </pre>
+    <p>
+        Illustrating something similar in C++ takes a bit more.  In this case, we will use the C++ array which
+        is has some similarity to a Python list except that an array's length is fixed -- it cannot change.  In C++
+        it is not possible to assign one array to another.  Instead, you have to loop through the arrays
+        assigning one element at a time.  The same is true for output.
+    </p>
+    <pre>
+        int main()
+        {
+            int A[2] = {2,3};  // declare array A of length 2 and assign its elements to have values 2 and 3
+            int B[2];          // declare array B of length 2, but don't assign its elements (yet)
+            for (int i = 0; i < 2; i++)  // loop through both arrays A and B assigning to each element
+                B[i] = A[i];             //        of B the corresponding value of A
+                B[0]= 100;   // change the first element of B
+            for (int i = 0; i < 2; i++)  // loop through A and B printing out each element
+            cout << "A,B: " << A[i] << ", " << B[i]; // output would look like: A,B: 2,100 A,B: 3,3
+        }
+    </pre>
+    <p>
+        In the case of C++, the values of A are not changed when B is changed.</p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="arithmetic"></a>
+    <H3>Arithmetic</H3>
+    <p>
+        Arithmetic expressions in C++ will be familiar:
+    </p>
+        <ul>
+            <li>+, -, *, % </li>
+            <li>+=, -=, *=, /= </li>
+            <li> but no **</li>
+        </ul>
+    <p>
+        However, division in C++ is indicated by "/" only, not "//".  The operator performs "true division" 
+        on any floating point types and "floor division" on any integer types. "/=" follows the same rules.
+    </p>
+        <ul>
+            <li>1/2 is 0.5 in Python 3 but 0 in C++, since floor(.5) = 0 </li>                                                                                  
+            <li>1.0/2.0 is 0.5 in either language </li>                                                                              
+        </ul>
+    <p>
+        Increment is new:
+    </p>
+        <ul>
+            <li>y = ++x;<br/>
+                equivalent to x = x + 1; y = x;</li>
+            <li>y = x++;<br/>
+                equivalent to y = x; x = x + 1;</li>
+        </ul>
+    <p>
+        Decrement is similar: --
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="relations"></a>
+    <H3>Relations</H3>
+    Relational operators in C++ will be familiar:
+    <ul>
+        <li> ==, !=, <, >, <=, >=</li>
+    </ul>
+    <p>
+        but
+    </p>
+        <ul>
+            <li>&& means and</li>
+            <li>|| means or</li>
+        </ul>
+    <p>
+        <b>Gotcha #3:</b>In C++ this expression does <b>not</b> work like Python or mathematics:<br/>
+        Assume that x = 3, what is the value of the expression: <code>5 < x < 10</code>?
+    </p>
+    <p>
+        In C++ the subexpression <code>5 < x </code> is evaluated first to be false with value "0".  The "0"
+        replaces the subexpression so next <code>0 < 10</code> is evaluated to be true.  So the value of the
+        whole expression <code>5 < x < 10</code> when <code>x = 3</code> is evaluated to be TRUE!
+    </p>
+    <p>
+        To get the correct answer in C++ the expression must be written as:<br/>
+        <code> (5 < x) && (x < 10)</code> </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="conditionalif"></a>
+    <H3>Conditional: if</H3>
+    In C++, conditionals are familiar, but
+    <ul>
+        <li>parenthesis are required around the expression</li>
+        <li>colon is not required</li>
+        <li>indentation is not required, but strongly recommended.</li>
+    </ul>
+    <p>
+        For example:
+    </p>
+    <pre>
+        if (x > 4) 
+        y = 7;
+    </pre>
+    <p>
+        Like Python, C++ allows an "else" clause:
+    </p>
+    <pre>
+        if (x <= 5)
+            y = 8;
+        else
+            z = 10;
+    </pre>
+    <p>
+        However, C++ does <b>not</b> have the "elif" keyword. Instead, you must use "else if":
+    </p>
+    <pre>
+        if (y == 7)
+            x = 2;
+        else if (x != 2)
+            y = 5;
+        else 
+            z = 10;
+    </pre>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="pythonsuites"></a>
+    <H3>Python suites == C++ blocks</H3>
+    <p>
+        Python uses indentation to indicate suites.<br/>
+        C++ uses curly braces, <code>{</code> and <code>}</code> to delimit blocks.<br/>
+        Indentation is strongly recommended.
+    </p>
+    <p>
+        For example:
+    </p>
+    <pre>
+        if ((x <= 5) && (y != 7))
+        {
+            z = 12;
+            w = 13;
+        }
+    </pre>
+    <p>
+        However, if the block only includes one line of code the curly braces are not required. (See the  <code>if</code> examples above.)      
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="comments"></a>
+    <H3>Comments</H3>
+    <p>
+        Comments and their usage will be familiar, but the delimiters are different:
+    </p>
+    <pre>
+        // this is a comment at the end of a line
+        /* this is
+            a multi-line comment */
+    </pre>
+    <p>
+        C++ has no notion of a docstring.
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="whileloop"></a>
+    <H3> while loop</H3>
+    <p>
+        The C++ while loop will be familiar, and shares syntax rules with the C++ "if" statement:
+    </p>
+        <ul>
+            <li>parenthesis required for the expression</li>
+            <li>curly braces delimit block (required for multi-statement)</li>
+        </ul>
+    <p>
+        For example:
+    </p>
+    <pre>
+        while (x < 5)
+        {
+            y = z + x;
+            x = x + 1;
+        } 
+    </pre>
+    <p>
+        The C++ while also has the familar:
+    </p>
+        <ul>
+            <li>continue</li>
+            <li>break</li>
+        </ul>
+    <p>
+        but there is <b>no</b> "else" for a C++ while statement.
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="forloop"></a>
+    <H3>for loop</H3>
+    <p>
+        The "for" in C++ is quite different than in Python.  There is good news and bad news.
+        The bad news is that Python's powerful <code>"for ... in ..."</code> loop does <b>not</b> have an equivalent in C++.
+    </p>
+    <p>
+        However, the good news is that the C++ "for" loop is similar to Python's <code>"for x in range(...)"</code> loop.
+    </p>
+    <p>
+        For example, in Python:
+    </p>
+    <pre>
+        for x in range(5):
+            print(x)
+    </pre>
+        the equivalent in C++ is:
+    <pre>
+        for (int x = 0; x < 5; x++)
+            cout << x;
+    </pre>
+    <p>
+        The C++ "for" header has three parts:<br/>
+        for (int x = 0; x < 5, x++)
+    </p>
+        <ul>
+            <li> the initial expression "int x = 0" which is executed once at the beginning</li>
+            <li> the conditional expression "x < 5" which is executed before every iteration.<br/>
+            if the condition is true, the loop body is executed</li>
+            <li> the final expression "x++" is executed at the end of the loop body on every iteration</li>
+        </ul>
+    <p>
+        Note that if the conditional expression is false at the beginning, the loop body will not be executed at all.
+    </p>
+    <p>
+        In C++, "for" is a special case of "while." Understanding that relationship is important for understanding how the loops work.  Note that this equivalence is not true in Python.
+    </p>
+    <p>
+        To illustrate with an example:
+    </p>
+    <pre>
+        for (int x = 0; x < 5, x++)
+            cout << x;
+    </pre>
+    <p>
+        is equivalent to
+    </p>
+    <pre>
+        int x = 0;
+        while (x < 5)
+        {
+            cout << x; 
+            x++;
+        }
+    </pre>
+    <p>
+        Like "while", the "for" in C++ has
+    </p>
+        <ul>
+            <li>continue</li>
+            <li>break</li>
+        </ul>
+    <p>
+        but also <b>no</b> "else" in C++ "for" loop. 
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+
+    <a name="output"></a>
+    <H3>Output</H3>
+    <p>
+        Output in C++ looks familiar, but with differences.  In particular, Python uses syntax that is similar 
+        to C output expressions which are allowable in C++.
+    </p>
+    <p>
+        For example, in Python 3 we can use:
+    </p>
+    <pre>
+        print( "int {} and float {:5.3f} ".format( 45, 3.1416 ))                                                                             
+    </pre>
+	In earlier versions of Python print formatting was based off C and looked like:
+    <pre> 
+        print "int %d and float %5.3f" % (45, 3.1416)
+    </pre>
+    <p>
+        In C (which is allowed in C++) the output looks similar:
+    </p>
+    <pre>
+        printf("int %d and float %5.3f \n", 45, 3.1416);
+    </pre>
+    <p>
+        Note the "\n" -- an explicit carriage return which is required in C to get the same output in this example.
+    </p>
+    <p>
+        However, the C++ standard is quite a bit different than the allowable C syntax.
+    </p>
+    <p>
+        First, C++ needs <code>#include &lt;iomanip&gt;</code> at the top of the program 
+        (along with <code>#include &lt;iostream&gt;</code>).
+    </p>
+    <pre>
+        cout<< setprecision(4); // significant digits is 4
+        cout<< "int "<< 45 <<" and float "<< setw(5)<< 3.1416;
+        cout << endl;  // explicit carriage return
+    </pre>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="fileinputoutput"></a>
+    <H3>File Input and Output</H3>
+    <p>
+        Here we see a huge difference in necessary syntax.  In particular, Python's shortcut for file input
+        is considerably shorter than the C++ syntax.
+    </p>
+    <p>
+        For example, in Python we could simply do:
+    </p>
+    <pre>
+        for line in file("Data.txt"): print(line)
+    </pre>
+    <p>
+        Alternatively, in Python we could have explictly opened the file first -- a sequence which is more
+        similar to what is done in C++:
+    </p>
+    <pre>
+        inStream = open("Data.txt", "r")
+        for line in inStream: 
+            print(line)
+    </pre>
+    <p>
+        In C++, we must include the file stream libraries, declare objects, explicitly open the file, 
+        and explictly check for when we reach the end of the file:
+    </p>
+    <pre>
+        #include &lt;iostream&gt;
+        #include &lt;fstream&gt;  // file streams
+        #include &lt;string&gt;
+        using namespace std;
+
+        int main()
+        {
+            ifstream InStream;    // declare the input stream
+            string line;          // a string
+
+            InStream.open("Data.txt"); // open file
+            getline(InStream,line);    // read a line
+            while (!InStream.eof())    // check if not at end-of-file (eof)
+            {
+                cout << line << endl;     // output the line
+                getline(InStream,line);   // read next line
+            }
+        }
+    </pre>
+    <p>
+        <b>Gotcha #4:</b> Note how the "while" loop functions: we get some input (using getline) <b>before</b> we check for the end-of-file at the top of the loop and then we get the next input at the <b>bottom</b> of the loop.  A common error with "while" loops is to put the "getline" at the beginning of the block in the "while" loop resulting in one too many iterations. (This gotcha also applies to Python, but in Python you likely used "while" less frequently than you will in C++.)
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="functions"></a>
+    <H3>Functions</H3>
+    <p>
+        Functions have similarities, but also have some very significant differences.  <b>You will need to be careful!!</b>
+    </p>
+    <p>
+        Let's begin with what is similar.
+    </p>
+    <p>
+        In Python:
+    </p>
+    <pre>
+        def fun(x):
+            return x + 2
+    </pre>
+    <p>
+        In C++, it looks quite similar.  Most notable is the need to declare the type of the parameter x.
+    </p>
+    <pre>
+        int fun(int x)
+        {
+            return x + 2;
+        }
+    </pre>
+    <p>
+        In both C++ and Python functions return exactly one object.
+        However, in Python you have built-in objects that contain multiple values such as tuples.
+        While it is possible in C++ to build similar objects, the tendency is to use parameters 
+        to "return" multiple values -- similar to how mutable parameters can be changed in Python.
+    </p>
+    <p>
+        <b>Parameters: value vs. reference</b><br/>
+        The default parameter passing in C++ is "pass by value" -- similar to Python passing of immutable objects.
+        That is, changing the associated object in the function does not change the original.
+        Stated another way: changing the parameter does not change the argument.
+    </p>
+    <p>
+        <b>Pass by value</b><br/>
+        Let's examine a C++ pass-by-value example.  The output can be seen in the comments.  In particular, note that 
+        changing the x in the function did not change the x in the main:
+    </p>
+    <pre>
+        int fun(int x)
+        {
+            x = x + 2;
+            cout << x;    // prints 5 
+        }
+
+        int main()
+        {
+            int x = 3;
+            fun(x);
+            cout << x;    // prints 3, i.e. unchanged as expected
+        }
+    </pre>
+    <p>
+        <b>Pass by reference</b><br/>
+        In C++ pass-by-reference is flagged by appending an ampersand, &, to each parameter name you want passed by reference.
+        In this example, the x in the function <b>refers</b> to the same object as the x in main so changing the value of x in the function changes the value of x in main (because they refer to the same object). It is worth noting that if the parameter in the function was named y instead of x, the behavior of the example would be unchanged.
+    </p>
+    <p>
+        For example, notice how in this example the value of x in main is changed by the function.
+    </p>
+    <pre>
+        int fun(int& x)
+        {
+            x = x + 2;
+            cout << x;    // prints 5 
+        }
+
+        int main()
+        {
+            int x = 3;
+            fun(x);
+            cout << x;    // prints 5, DIFFERENT than above!
+        }
+    </pre>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="classes"></a>
+    <H3>Classes</H3>
+    <p>
+        Classes have similarities, but are quite different. Classes in C++
+        usually involve two files, an interface file and an implementation file.  The
+        first includes the declarations of all the members of the class.  Classes have
+        public and private members like Python.  They also have "friends" and
+        "associates" but those are not important right now.  The members are declared
+        under the headings "private:" and "public:".  Unlike Python the private members
+        are truly private and cannot be accessed except by other class members.  An
+        example of an interface file is: <br/>
+    </p>
+    <pre>
+	    #indef SQUARE_
+	    #define SQUARE_
+
+	    Using namespace std;
+	    class Square
+	    {
+	        private:
+		    double length, width;
+	   
+	        public:
+		    Square(double Length = 0.0, double Width = 0.0); // Constructor
+		    ~Square();  // Destructor
+		    double area();
+	    }
+    </pre><br/>
+	<p>
+        The C++ equivalent of "self' is "this" however it does
+        not have to be included as a function parameter.<br/>
+	    The implementation file includes all the function
+        definitions, each must include the return type, class name,
+        function name, and any function parameters. So the function
+        "area()" above would be defined as:<br/>
+    </p>
+    <pre>
+	    double Square::area()
+	    {
+		    return length * width; // Can access private data members
+	    }
+    </pre><br/>
+	<p>
+        Functions that do not return anything have the return type "void"
+        such as: <br/>
+    </p>
+    <pre>
+	    void Sequence::display() // Prints class object but returns nothing
+    </pre><br/>
+	<p>
+        It is possible to override operators.  The constructor above is the equivalent of
+        __init__ in Python.  The destructor deletes memory after you are finished with it.  There
+        are defaults for these funcions or you can write your own if the defaults are not
+        sufficient.  Copy constructors and assignment operations can also be overridden.  Other
+        operators include mathematic operations like:<br/>
+    </p>
+    <pre>
+	    Addition---Class Class::operator+( Class& Item ) // Python's __add__
+	    Subtration-Class Class::operator-( Class& Item ) // Python's __sub__
+	
+	    // Note these operations return type "Class"
+    </pre><br/>
+	<p>
+        Boolean operations which compare class objects:<br/>
+    </p>
+    <pre>
+	    Equal--------bool Class::operator==(const Class& Item1, const Class& Item2)
+	    Greater than-bool Class::operator>(const Class& Item1, const Class& Item2)
+
+	    // Note the parameters are all constant so the items cannot be changed while
+	    // you are comparing them
+    </pre><br/>
+    <p>
+	    And input and output operations which allow you to choose how input is read
+        and output is formatted:<br/>
+    </p>
+    <pre>
+	    Input-----istream& Class::operator>>( istream& In, const Class& Item )
+	    Output----ostream& Class::operator<<( ostream& Out, const Class& Item )
+    </pre>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="pointers"></a>
+    <H3>Pointers</H3>
+    <p>
+        Pointers will be new to you so we'll briefly mention them -- they require considerably more space than we can devote to the topic here. In many respects pointers are simple, but their simplicity allows one to get into trouble. A pointer is simply a variable that holds a memory address. In a variable declaration an asterisk, *, indicates that a variable is a pointer, and the type indicates the type of the object found at the address in the pointer.  An ampersand, &, indicates the address of an object.  For example:
+    </p>
+    <pre>
+        int A, *C = &A;
+    </pre>
+    <p>
+        The pointer C (indicated by the *) holds the address (&) of integer A.  A simple example can be found <a href="http://www.cse.msu.edu/~cse231/Examples/CoursePack/C++/Example41_v2.htm"> here</a>. A longer explanation of pointers in general including references to C and C++ can be found <a href="http://en.wikipedia.org/wiki/Pointers"> here</a> in Wikipedia.
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+    <a name="exceptions"></a>
+    <H3>Exceptions</H3>
+    <p>
+        Try/except are quite similar. A "try' block of code is written followed by "catch" blocks. Built
+        in exceptions include: bac_alloc, bad_cast, bad_exception, bad_typeid, and ios_base::failure.  It is also
+        possible to throw your own exceptions.  However, using exceptions in C++ is more complicated than Python and for now you won't need it.
+    </p>
+    <p>
+        <a href="#quicklinks">Return to Quick Links</a>
+    </p>
+
+		
+	</div>
+	<!-- end page -->
+</div>
+<div id="footer">
+	<p class="copyright">&copy;&nbsp;&nbsp;2012 All Rights Reserved &nbsp;&bull;&nbsp; Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+</body>
+</html>
